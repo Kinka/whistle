@@ -1,5 +1,3 @@
-whistle
-
 ##whistle 是什么
 whistle(读音`[ˈwɪsəl]`，拼音`[wēisǒu]`)是基于Node实现的跨平台调试代理工具。
 
@@ -46,6 +44,7 @@ Value 是什么？在刚刚的Rule例子中，有看到一个大括号{}标识�
 列举常见操作的示例
 
 ##whistle 高级用法
+
 [Websocket](http://wproxy.org/whistle/webui/websocket.html)
 [Plugins](http://wproxy.org/whistle/webui/plugins.html)
 [Log](http://wproxy.org/whistle/webui/log.html)
