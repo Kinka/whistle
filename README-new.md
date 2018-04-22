@@ -1,0 +1,53 @@
+whistle
+
+##whistle 是什么
+whistle(读音`[ˈwɪsəl]`，拼音`[wēisǒu]`)是基于Node实现的跨平台调试代理工具。
+
+[README in English](README.md)
+
+它提供了如下基本功能：
+
+1. 提供HTTP代理服务
+2. 抓包、重放或构造HTTP、HTTPS、WebSocket及普通的Socket(TCP)请求
+3. 通过类似hosts的简单配置方式操作请求或响应，且支持域名、路径、正则表达式、通配符、通配路径等多种[匹配模式](https://avwo.github.io/whistle/pattern.html)
+4. 内置移动调试功能
+
+##whistle 获取和安装
+whistle的安装是非常简单的。在安装完node(推荐版本v6以上)之后，打开命令行运行 whistle start 或者简易方式 w2 start，即启动了whistle后台程序。
+whistle采用了web界面，从而只需要一个浏览器就能随意访问，不会受到操作系统平台影响，甚至可以直接远程访问，相当的方便。在浏览器中输入: 127.0.0.1:8899，就能看到whistle的界面了。如果有任何异常，请先参考”常见问题“，或者联系作者，或者加入讨论组。
+
+##whistle 概念说明(一些特色项目)
+在使用whistle之前，有必要了解一下这几个概念：Rule， Value 和 Protocol
+
+Rule，格式为：<待匹配规则> <响应操作1> ... <响应操作n> 
+
+其作用是寻找满足指定规则的url，对其请求，回复进行操作，包括修改http请求的header, content， http回复的header, content，状态码等等，这些不同的响应操作，whistle按照类型将其分类，称之为**Protocol**，不同的Protocol可以在同一个Rule中同时配置。示例如下：
+```/rptrat/favauthor/gft/ file://{favauthors} resType://json```  
+在该示例中，**/rptrat/favauthor/gft/** 为待匹配规则，**file:** 和 **resType:** 为Protocol，其后分别指定了对应的操作内容。最终，该示例的效果就是，对于匹配成功的返回，使用 Value {favauthors}作为http回包，并修改http header的content-type字段为：application/json。更多Protocol，请移步[协议列表](http://wproxy.org/whistle/rules/)。
+
+Value 是什么？在刚刚的Rule例子中，有看到一个大括号{}标识，这就是whistle中所说的Value，这是一个非常便利的特色功能。可以认为是whistle本身提供的一个key-value数据库，通过在Rule中直接使用{key}引入实际的Value内容。对于Value的管理，请看[这里](http://wproxy.org/whistle/webui/values.html)。
+
+##whistle 开始使用
+顺利打开 127.0.0.1:8899 之后，看到的页面即whistle web-ui，通常切换不同的菜单标签来实现日常操作。这里先简单介绍几个常用的标签：Network，Rules，Values。Rules 和 Values ，即分别为Rule和Value的管理界面，而Network则是经过whistle这个http代理的流量。一开始的时候，会发现Network面板下是一片空白。这是因为我们还没有对系统或者浏览器进行http代理的配置，配置其转发流量到whistle。具体的配置请看这里：http://wproxy.org/whistle/install.html。
+
+成功配置http代理之后，可以看到Network面板开始忙碌了起来，一条条请求在不断刷屏。点击任意一个请求，都可以在右侧面板中看到各种详情，如请求内容，回包内容，请求连接耗时等。也许你会发现，对于https请求，浏览器会给出”不安全”的访问提示，这是因为还没有安装whistle的CA根证书，请参照[这里](http://wproxy.org/whistle/webui/https.html)，对应不同平台进行安装。安装成功之后，重启浏览器即可正常监听本地的https流量。
+
+接下来，我们对捕获的流量进行一些修改的操作：
+在Rules面板，在Default分组添加一行：
+```www.ifeng.com reqHeaders://{x-reqHeaders}```
+
+在Values面板中，新建一个key为x-reqHeaders的Value：
+```x-test1: value1```
+然后在配置了whistle代理的浏览器中访问www.ifeng.com，此时可以看到Network面板中，www.ifeng.com的浏览记录字体被加粗显示，并且右侧的Overview面板可以看到其命中的是哪一个Rule，查看该请求，可以发现请求已经带上了我们自定义的header。
+![规则命中](./assets/whistle-reqHeaders-0.png)
+![规则生效](./assets/whistle-reqHeaders-1.png)
+
+##whistle 能做什么，demo演示
+列举常见操作的示例
+
+##whistle 高级用法
+[Websocket](http://wproxy.org/whistle/webui/websocket.html)
+[Plugins](http://wproxy.org/whistle/webui/plugins.html)
+[Log](http://wproxy.org/whistle/webui/log.html)
+[Composer](http://wproxy.org/whistle/webui/composer.html)
+[socks proxy](http://wproxy.org/whistle/rules/socks.html)
