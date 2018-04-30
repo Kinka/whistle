@@ -38,11 +38,14 @@ whistle采用了web界面，从而只需要一个浏览器就能随意访问，�
 
 **Value** 是一个非常便利的特色功能。可以认为是whistle本身提供的一个key-value数据库，通过在Rule中直接使用{key}引入实际的Value内容，而不需要提供本地文件路径。对于Value的管理，请看[这里](http://wproxy.org/whistle/webui/values.html)。
 
-请看示例说明：
+请看一个Rule示例：
 ```*/hello/whistle file://{helloword} resType://json```  
-该示例我们称之为一个Rule，***/hello/whistle** 为目标规则，**file:** 和 **resType:** 为Protocol，其后分别指定了对应的操作内容，`{helloword}`为Value。最终，该示例的效果就是，对于匹配成功的http请求，使用 Value {helloword}作为http响应，并修改http header的Content-Type字段为：application/json，最后直接返回给浏览器。效果请看下图。我们会发现，http://wproxy.org/hello/whistle 是捏造的一个URL地址，但是通过whistle的Rule将该请求拦截并成功进行修改。
+
+该示例中，***/hello/whistle** 为目标规则，**file:** 和 **resType:** 为Protocol，其后分别指定了对应的操作内容，`{helloword}`为Value。最终，该示例的效果就是，对于匹配成功的http请求，使用 Value {helloword}作为http响应，并修改http header的Content-Type字段为：application/json，最后直接返回给浏览器。效果请看下图。我们会发现，http://wproxy.org/hello/whistle 是捏造的一个URL地址，但是通过whistle的Rule将该请求拦截并成功进行修改。
 ![helloword Rules](./assets/whistle-rules-helloword.png)
+
 ![helloword Values](./assets/whistle-values-helloword.png)
+
 ![helloword Response](./assets/whistle-helloword.png)
 
 ## whistle 开始使用
@@ -61,5 +64,5 @@ whistle采用了web界面，从而只需要一个浏览器就能随意访问，�
 ![规则生效](./assets/whistle-reqHeaders-effective.png)
 
 ## whistle 能做什么
-从前面的几个例子可以看到，whistle 提供了方便的修改请求和响应的机制，这些在用法在与Fiddler或者Charles并没有太大差异。事实上，whistle提供的可不止这些。
-whistle 可以通过参数替换[urlParams](http://wproxy.org/whistle/rules/urlParams.html)和模板[tpl](http://wproxy.org/whistle/rules/rule/tpl.html)更加灵活地修改请求和响应，也内置[weiren](http://wproxy.org/whistle/rules/weinre.html)和[log](http://wproxy.org/whistle/rules/log.html)辅助web调试，支持[socks代理](http://wproxy.org/whistle/rules/socks.html)和[pac](http://wproxy.org/whistle/rules/pac.html)，甚至也提供了[websocket](http://wproxy.org/whistle/webui/websocket.html)的调试功能。如果这些功能还无法满足你的需求，那可以考虑开发插件([Plugins](http://wproxy.org/whistle/webui/plugins.html))来实现更多自定义的功能。
+从前面的几个例子可以看到，whistle 提供了方便的修改请求和响应的机制，这些在用法在与Fiddler或者Charles并没有太大差异。事实上，whistle提供的可不止这些。
+whistle 可以通过参数替换[urlParams](http://wproxy.org/whistle/rules/urlParams.html)和模板[tpl](http://wproxy.org/whistle/rules/rule/tpl.html)更加灵活地修改请求和响应，也内置[weiren](http://wproxy.org/whistle/rules/weinre.html)和[log](http://wproxy.org/whistle/rules/log.html)辅助web调试，支持[socks代理](http://wproxy.org/whistle/rules/socks.html)和[pac](http://wproxy.org/whistle/rules/pac.html)，甚至也提供了[websocket](http://wproxy.org/whistle/webui/websocket.html)的调试功能。如果这些功能还无法满足你的需求，那可以考虑开发插件([Plugins](http://wproxy.org/whistle/webui/plugins.html))来实现更多自定义的功能。
