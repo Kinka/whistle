@@ -40,7 +40,7 @@ whistle采用了web界面，从而只需要一个浏览器就能随意访问，�
 
 请看示例说明：
 ```*/hello/whistle file://{helloword} resType://json```  
-该示例我们称之为一个Rule，***/hello/whistle** 为目标规则，**file:** 和 **resType:** 为Protocol，其后分别指定了对应的操作内容，`{helloword}`为Value。最终，该示例的效果就是，对于匹配成功的http请求，使用 Value {helloword}作为http响应，并修改http header的Content-Type字段为：application/json，最后直接返回给浏览器，效果请看下图。
+该示例我们称之为一个Rule，***/hello/whistle** 为目标规则，**file:** 和 **resType:** 为Protocol，其后分别指定了对应的操作内容，`{helloword}`为Value。最终，该示例的效果就是，对于匹配成功的http请求，使用 Value {helloword}作为http响应，并修改http header的Content-Type字段为：application/json，最后直接返回给浏览器。效果请看下图。我们会发现，http://wproxy.org/hello/whistle 是捏造的一个URL地址，但是通过whistle的Rule将该请求拦截并成功进行修改。
 ![helloword Rules](./assets/whistle-rules-helloword.png)
 ![helloword Values](./assets/whistle-values-helloword.png)
 ![helloword Response](./assets/whistle-helloword.png)
@@ -57,8 +57,8 @@ whistle采用了web界面，从而只需要一个浏览器就能随意访问，�
 在Values面板中，新建一个key为x-reqHeaders的Value：
 ```x-test1: value1```
 然后在配置了whistle代理的浏览器中访问 www.ifeng.com，此时可以看到Network面板中，www.ifeng.com 的浏览记录字体被加粗显示，并且右侧的Overview面板可以看到其命中的是哪一个Rule，查看该请求，可以发现请求已经带上了我们自定义的header。当然，Values面板只是为我们提供一个方便的在线的内容管理，我们也可以将内容保存到本地文件，再进行映射。参考[这里](http://wproxy.org/whistle/rules/rule/file.html)。
-![规则命中](./assets/whistle-reqHeaders-0.png)
-![规则生效](./assets/whistle-reqHeaders-1.png)
+![规则命中](./assets/whistle-reqHeaders-matched.png)
+![规则生效](./assets/whistle-reqHeaders-effective.png)
 
 ## whistle 能做什么，demo演示
 列举常见操作的示例
