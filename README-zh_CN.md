@@ -60,13 +60,6 @@ whistle采用了web界面，从而只需要一个浏览器就能随意访问，�
 ![规则命中](./assets/whistle-reqHeaders-matched.png)
 ![规则生效](./assets/whistle-reqHeaders-effective.png)
 
-## whistle 能做什么，demo演示
-列举常见操作的示例
-
-## whistle 高级用法
-
-[Websocket](http://wproxy.org/whistle/webui/websocket.html)
-[Plugins](http://wproxy.org/whistle/webui/plugins.html)
-[Log](http://wproxy.org/whistle/webui/log.html)
-[Composer](http://wproxy.org/whistle/webui/composer.html)
-[socks proxy](http://wproxy.org/whistle/rules/socks.html)
+## whistle 能做什么
+从前面的几个例子可以看到，whistle 提供了方便的修改请求和响应的机制，这些在用法在与Fiddler或者Charles并没有太大差异。事实上，whistle提供的可不止这些。
+whistle 可以通过参数替换[urlParams](http://wproxy.org/whistle/rules/urlParams.html)和模板[tpl](http://wproxy.org/whistle/rules/rule/tpl.html)更加灵活地修改请求和响应，也内置[weiren](http://wproxy.org/whistle/rules/weinre.html)和[log](http://wproxy.org/whistle/rules/log.html)辅助web调试，支持[socks代理](http://wproxy.org/whistle/rules/socks.html)和[pac](http://wproxy.org/whistle/rules/pac.html)，甚至也提供了[websocket](http://wproxy.org/whistle/webui/websocket.html)的调试功能。如果这些功能还无法满足你的需求，那可以考虑开发插件([Plugins](http://wproxy.org/whistle/webui/plugins.html))来实现更多自定义的功能。
