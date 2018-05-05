@@ -88,7 +88,7 @@ whistle 可以通过
 
   5. 如果这些功能还无法满足你的需求，那可以考虑开发插件([Plugins](http://wproxy.org/whistle/webui/plugins.html))来实现更多自定义的功能。
 
-### 功能全景图展示如下：
+### 功能全景展示如下：
 ![功能概览](https://raw.githubusercontent.com/avwo/whistleui/master/assets/whistle.png)
 
 
