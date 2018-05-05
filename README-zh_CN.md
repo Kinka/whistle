@@ -49,9 +49,18 @@ whistle采用了web界面，从而只需要一个浏览器就能随意访问，�
 ![helloword Response](./assets/whistle-helloword.png)
 
 ## whistle 开始使用
-顺利打开 http://127.0.0.1:8899 之后，看到的页面即whistle web-ui，通常切换不同的菜单标签来实现日常操作。这里先简单介绍几个常用的标签：Network，Rules，Values。Rules 和 Values ，即分别为Rule和Value的管理界面，而Network则是经过whistle这个http代理的流量。一开始的时候，会发现Network面板下是一片空白。这是因为我们还没有对系统或者浏览器进行http代理的配置，配置其转发流量到whistle。具体的配置请看这里：http://wproxy.org/whistle/install.html。
+顺利打开 http://127.0.0.1:8899 之后，看到的页面即whistle web-ui，通常切换不同的菜单标签来实现日常操作。这里先简单介绍几个常用的标签：Network，Rules，Values，以及HTTPS。
 
-成功配置http代理之后，可以看到Network面板开始忙碌了起来，一条条请求在不断刷屏。我们可以通过Filter来减少界面上展示的内容。点击任意一个请求，都可以在右侧面板中看到各种详情，如请求内容，回包内容，请求连接耗时等。也许你会发现，对于https请求，浏览器会给出”不安全”的访问提示，这是因为还没有安装whistle的CA根证书，请参照[这里](http://wproxy.org/whistle/webui/https.html)，对应不同平台进行安装。安装成功之后，重启浏览器即可正常监听本地的https流量。
+Rules 和 Values ，即分别为Rule和Value的管理界面，而Network则是经过whistle这个http代理的流量。一开始的时候，会发现Network面板下是一片空白。这是因为我们还没有对系统或者浏览器进行http代理的配置，配置其转发流量到whistle。具体的配置请看这里：http://wproxy.org/whistle/install.html。
+
+成功配置http代理之后，可以看到Network面板开始忙碌了起来，一条条请求在不断刷屏。这时我们可以通过Filter来减少界面上展示的内容。
+
+点击任意一个请求，都可以在右侧面板中看到详情，如请求内容，回包内容，请求连接耗时等。
+
+也许你会发现，对于https请求，浏览器会给出”不安全”的访问提示，这是因为还没有安装whistle的CA根证书，请参照[这里](http://wproxy.org/whistle/webui/https.html)，对应不同平台进行安装。安装成功之后，重启浏览器即可正常监听本地的https流量。
+
+请看动图演示：
+![动图演示](https://raw.githubusercontent.com/avwo/whistleui/master/assets/whistle.gif)
 
 接下来，我们对捕获的流量进行一些修改：
 在Rules面板，在Default分组添加一行：
@@ -65,4 +74,21 @@ whistle采用了web界面，从而只需要一个浏览器就能随意访问，�
 
 ## whistle 能做什么
 从前面的几个例子可以看到，whistle 提供了方便的修改请求和响应的机制，这些在用法在与Fiddler或者Charles并没有太大差异。事实上，whistle提供的可不止这些。
-whistle 可以通过参数替换[urlParams](http://wproxy.org/whistle/rules/urlParams.html)和模板[tpl](http://wproxy.org/whistle/rules/rule/tpl.html)更加灵活地修改请求和响应，也内置[weiren](http://wproxy.org/whistle/rules/weinre.html)和[log](http://wproxy.org/whistle/rules/log.html)辅助web调试，支持[socks代理](http://wproxy.org/whistle/rules/socks.html)和[pac](http://wproxy.org/whistle/rules/pac.html)，甚至也提供了[websocket](http://wproxy.org/whistle/webui/websocket.html)的调试功能。如果这些功能还无法满足你的需求，那可以考虑开发插件([Plugins](http://wproxy.org/whistle/webui/plugins.html))来实现更多自定义的功能。
+
+
+whistle 可以通过
+
+  1. 参数替换[urlParams](http://wproxy.org/whistle/rules/urlParams.html)和模板[tpl](http://wproxy.org/whistle/rules/rule/tpl.html)更加灵活地修改请求和响应
+
+  2. 也内置[weiren](http://wproxy.org/whistle/rules/weinre.html)和[log](http://wproxy.org/whistle/rules/log.html)辅助web调试
+
+  3. 支持[socks代理](http://wproxy.org/whistle/rules/socks.html)和[pac](http://wproxy.org/whistle/rules/pac.html)
+
+  4. 甚至也提供了[websocket](http://wproxy.org/whistle/webui/websocket.html)的调试功能
+
+  5. 如果这些功能还无法满足你的需求，那可以考虑开发插件([Plugins](http://wproxy.org/whistle/webui/plugins.html))来实现更多自定义的功能。
+
+### 功能全景图展示如下：
+![功能概览](https://raw.githubusercontent.com/avwo/whistleui/master/assets/whistle.png)
+
+
